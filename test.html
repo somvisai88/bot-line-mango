@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Wialon Playground - Monitoring notification</title>
+    <script type="text/javascript" src="//code.jquery.com/jquery-latest.min.js"></script>
+    <script type="text/javascript" src="//hst-api.wialon.com/wsdk/script/wialon.js"></script>
+</head>
+<body onload="showData()">
+    <script type="text/javascript">
+
+        function showData() {
+
+            wialon.core.Session.getInstance().initSession("https://hst-api.wialon.com"); // init session
+    
+	        wialon.core.Session.getInstance().loginToken("86732315073bfe909b25bc061d7cd30dA14F48855BB015033E8B03E313679402083E026E", "", // try to login
+	        function (code) { // login callback
+	    	if (code){ msg(wialon.core.Errors.getErrorText(code)); return; } // exit if error code
+	    	msg("Logged successfully"); 
+		    
+	    });
+
+        const xhr = new XMLHttpRequest();
+		xhr.open("POST","https://api.telegram.org/bot1596286707:AAEczFpw7ou6kkn3XlVfZt3Oa5cc5d029UU/sendMessage?chat_id=-573736883&text=I Like Programming", true);
+		xhr.send();
+        }
+    </script>
+    
+</body>
+</html>
