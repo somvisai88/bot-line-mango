@@ -33,8 +33,8 @@ app.post('/callMe',  function(req, res) {
             // error handling
         });*/
 
-        //client.pushMessage('Cc63b5e76eb484ba40949683094cdf692', {type:'text',text: message.toString()});
-        client.pushMessage('Cc63b5e76eb484ba40949683094cdf692', {type:'text',text: 'Hello Mr.Visai'});
+        client.pushMessage('Cc63b5e76eb484ba40949683094cdf692', {type:'text',text: message.toString()});
+        //client.pushMessage('Cc63b5e76eb484ba40949683094cdf692', {type:'text',text: 'Hello Mr.Visai'});
        
 });
 
