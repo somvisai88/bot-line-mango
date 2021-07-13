@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Wialon Playground - Monitoring notification</title>
+    <script type="text/javascript" src="//code.jquery.com/jquery-latest.min.js"></script>
+    <script type="text/javascript" src="//hst-api.wialon.com/wsdk/script/wialon.js"></script>
+</head>
+<body>
+<style>
+#log, td { 
+	border: 1px solid #c6c6c6; 
+}
+
+#container{
+	position: relative;
+	padding: 5px;
+	padding-top: 25px;
+	margin: 10px 0;
+	width: 100%;
+	height: 300px;
+	overflow-y: auto;
+	border: 1px solid #c6c6c6;  
+	box-sizing: border-box;
+}
+
+#close_popup {
+	border: 1px solid #c6c6c6;
+	position: absolute;
+	right: 5px;
+	top: 3px;;
+  	cursor: pointer;
+    width: 20px;
+    height: 20px;
+    text-align: center;
+}
+
+#notification {
+	width: 100%;
+}
+
+.close_btn {
+	cursors: pointer; 
+	width: 20px; 
+	text-align: center; 
+	vertical-align: middle;
+}
+</style>
+
+
+Notification info. Wait several seconds, until notification will be get
+<div id="container">
+  <div id="close_popup"> x </div>
+  Notification count <span id="count"></span><br>
+  <table id="notification">
+    <tr>
+      <td>Name</td>
+      <td>Text</td>
+      <td>Delete</td>
+    </tr>
+  </table>
+</div>
+<div id="log"></div>
+
+
+<script type="text/javascript">
+// Print message to log
+function msg(text) { $("#log").prepend(text + "<br/>"); }
+
+function init() { // Execute after login succeed
+    var sess = wialon.core.Session.getInstance(); // get instance of current Session
+    //specify what kind of data should be returned (diffrent flags for 'avl_unit' and 'avl_resource')
+    var flags = wialon.item.Item.dataFlag.base | wialon.item.Resource.dataFlag.base | wialon.item.Item.dataFlag.messages | wialon.item.Resource.dataFlag.notifications;
+    
+    sess.loadLibrary("resourceNotifications"); // load Notification Library 
+    
+    sess.updateDataFlags( // load items to current session
+	[{type: "type", data: "avl_resource", flags: flags, mode: 1}], // Items (avl_resource) specification
+	function (code) { // updateDataFlags callback
+	    if (code) { msg(wialon.core.Errors.getErrorText(code)); return; } // exit if error code 
+
+	    // get loaded 'avl_resource's items with edit notification access 
+	    var res = sess.getItems("avl_resource");
+	    for (var i = 0; i< res.length; i++) { // construct Select list using found resources		
+		    //addEvent(res[i].getId()); // add event to any resource object
+			res[i].addListener("messageRegistered", showData); // register event when we will receive message
+	    }
+	});
+	$("#count").text(0); // count of notification
+	$("#close_popup").click(close_popup); // event on close popup block
+	$("#notification").on("click", ".close_btn", delete_info); // event on delete row with notification info
+	console.log("----- FORM -----");
+}
+
+function showData(event) {
+	var data = event.getData(); // get data from event
+		
+	if (data.tp && data.tp == "unm") {
+		$("#notification").append("<tr><td>" + data.name + "</td><td>" + data.txt + "</td><td id='" + data.t + "' class='close_btn'>x</td><tr>"); // add row with data to info-table
+		$("#count").text(parseInt($("#count").text()) + 1); // get notification count
+		$("#container").show();
+		const xhr = new XMLHttpRequest();
+		xhr.open("POST","https://api.telegram.org/bot1596286707:AAEczFpw7ou6kkn3XlVfZt3Oa5cc5d029UU/sendMessage?chat_id=-573736883&text="+ data.txt, true);
+		xhr.send();
+
+		//const xhrLine = new XMLHttpRequest();
+		//xhrLine.open("POST","https://bot-line-mango-vlywj.ondigitalocean.app/callMe?message="+ data.txt, true);
+		//xhrLine.send();
+		
+
+	}
+}
+
+function close_popup() {
+	$("#container").hide();
+}
+
+function delete_info(event) {
+	// delete notification from list
+	$(event.target.parentNode).remove();
+}
+
+// execute when DOM ready
+$(document).ready(function () {
+	wialon.core.Session.getInstance().initSession("https://hst-api.wialon.com"); // init session
+    // For more info about how to generate token check
+    // http://sdk.wialon.com/playground/demo/app_auth_token
+	wialon.core.Session.getInstance().loginToken("984d9fe52eae37eff6feb497a0fefc539AFE330D44C2849275CFE3A09C3EB820D1AFE214", "", // try to login
+	    function (code) { // login callback
+	    	if (code){ msg(wialon.core.Errors.getErrorText(code)); return; } // exit if error code
+	    	msg("Logged successfully"); 
+		init(); // when login suceed then run init() function/
+	});
+})
+//7b0aa41874de5af74ff2b20c75fcca6276886732E2E1AA68754033023BD96674EC69DB8A
+//7b0aa41874de5af74ff2b20c75fcca628B8672DB0DDAEBC9309F3A6449D75C0180AD6402
+</script>
+</body>
+</html>

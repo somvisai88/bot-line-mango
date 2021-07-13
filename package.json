@@ -4,13 +4,14 @@
   "description": "This is sub system to migrate with Gurtam System",
   "main": "index.js",
   "dependencies": {
-    "@line/bot-sdk": "^7.2.0",
+    "@line/bot-sdk": "^7.3.0",
     "axios": "^0.21.1",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "form-data": "^4.0.0",
     "node-wialon": "^1.16.2",
     "npm-git-install": "^0.3.0",
+    "request": "^2.88.2",
     "wialon": "^2.0.2",
     "wialonjs-api": "0.0.8"
   },
