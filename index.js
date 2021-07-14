@@ -62,57 +62,11 @@ function handleEvent(event) {
   }
 
   // create a echoing text message
-  //const echo = { type: 'text', text: event.message.text };
+  const echo = { type: 'text', text: event.message.text };
 
   // use reply API
- // return client.replyMessage(event.replyToken, echo);
+  return client.replyMessage(event.replyToken, echo);
 }
-
-//-------------------WIALON REMOTE API
-const axios1 = require("axios");
-var eid ="";
-axios1
-  .get(
-    `https://hst-api.wialon.com/wialon/ajax.html?svc=token/login&params={"token":"984d9fe52eae37eff6feb497a0fefc539AFE330D44C2849275CFE3A09C3EB820D1AFE214"}`
-  )
-  .then((response) => {
-    console.log("ip:" + response.data.host);
-    
-    eid = response.data.eid;
-    console.log(eid);
-    //var url = `https://hst-api.wialon.com/wialon/ajax.html?svc=core/search_items&sid=${eid}&params={%22spec%22:{%22itemsType%22:%22avl_unit%22,%22propName%22:%22%22,%22propValueMask%22:%22%22,%22sortType%22:%22%22,%22propType%22:%22%22,%22or_logic%22:false},%22force%22:1,%22flags%22:1025,%22from%22:0,%22to%22:0}`;
-    //console.log(decodeURI(url));
-    //console.log("usuario:" + response.data.user.nm);
-    //axios1.get(url).then((response) => {
-    //  console.log(response.data.items);
-    //});
-
-    //------------------- Add Units in Events Management------------
-    var urlEvents = `https://hst-api.wialon.com/wialon/ajax.html?svc=core/update_data_flags&sid=${eid}&params={%22spec%22:[{%22type%22:%22type%22,%22data%22:%22avl_resource%22,%22flags%22:1,%22mode%22:0}]}`;
-    console.log(decodeURI(urlEvents));
-    axios1.get(urlEvents).then((response) => {
-    console.log(response.data);
-      
-    });
-
-    
-  })
-  .catch((error) => {
-    console.log(error);
-  });
-//------------------------------------
-
-//----------------- CHECK WIALON UPDATE EVERY 15 SECONDS
-function intervalFunc() {
-  var urlWialonUpdate = `https://hst-api.wialon.com/avl_evts?sid=${eid}`;
-  console.log(decodeURI(urlWialonUpdate));
-    axios1.get(urlWialonUpdate).then((response) => {
-      console.log(response.data);
-    });
-}
-
-//setInterval(intervalFunc, 5000);
-//------------------------------------------------------
 
 // listen on port
 const PORT = process.env.PORT || 5001;
