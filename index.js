@@ -46,7 +46,7 @@ app.post('/callback', line.middleware(config), (req, res) => {
       res.json(result);
       //var message = req.param('message');
       //console.log("Destination User ID: " + JSON.stringify(req.body.events));
-      client.pushMessage('Ca83e09bb6adda01520a67c1888f52780', {type:'text',text: ''});
+      client.pushMessage('C4671018fe7f2399f85112949a4db5057', {type:'text',text: ''});
     })
     .catch((err) => {
       console.error(err);
