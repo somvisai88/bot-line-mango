@@ -21,7 +21,7 @@ const app = express();
 // register a webhook handler with middleware
 // about the middleware, please refer to doc
 app.post('/callMe',  function(req, res) {
-      var message = req.param('message');
+      //var message = req.param('message');
         //console.log("Destination User ID: " + JSON.stringify(req));
         //console.log("=======CHECK=======: " + req.body.events[0].source.groupId);
         //client.pushMessage('Ca83e09bb6adda01520a67c1888f52780', {type:'text',text: message.toString()});
@@ -34,7 +34,7 @@ app.post('/callMe',  function(req, res) {
         .catch((err) => {
             // error handling
         });*/
-        client.pushMessage('Ca83e09bb6adda01520a67c1888f52780', {type:'text',text: 'Hello Mr.callMe'});
+        client.pushMessage('C4671018fe7f2399f85112949a4db5057', {type:'text',text: '-'});
         //client.pushMessage('C4671018fe7f2399f85112949a4db5057', {type:'text',text: message.toString()});
         //client.pushMessage('Cc63b5e76eb484ba40949683094cdf692', {type:'text',text: 'Hello Mr.Visai'});
        
@@ -47,7 +47,7 @@ app.post('/callback', line.middleware(config), (req, res) => {
       res.json(result);
       //var message = req.param('message');
       //console.log("Destination User ID: " + JSON.stringify(req.body.events));
-      client.pushMessage('Ca83e09bb6adda01520a67c1888f52780', {type:'text',text: 'Hello Mr.callback'});
+      client.pushMessage('C4671018fe7f2399f85112949a4db5057', {type:'text',text: '-'});
     })
     .catch((err) => {
       console.error(err);
@@ -76,7 +76,8 @@ function init() { // Execute after login succeed
 	var sess = wialon.core.Session.getInstance(); // get instance of current Session
 	// flags to specify what kind of data should be returned
 	var flags = wialon.item.Item.dataFlag.base | wialon.item.Resource.dataFlag.base | wialon.item.Item.dataFlag.messages | wialon.item.Resource.dataFlag.notifications;
-
+  console.log("===== SESSION ======");
+  console.log(sess.__token);
   sess.loadLibrary("resourceNotifications"); // load Notification Library 
     sess.updateDataFlags( // load items to current session
 	[{type: "type", data: "avl_unit", flags: flags, mode: 1}], // Items specification
@@ -109,14 +110,14 @@ function showData(event) {
         
 		//xhr.open("POST","https://api.telegram.org/bot1596286707:AAEczFpw7ou6kkn3XlVfZt3Oa5cc5d029UU/sendMessage?chat_id=-573736883&text="+ encodeURI(data.et), true);
 		//xhr.send();
-    client.pushMessage('Ca83e09bb6adda01520a67c1888f52780', {type:'text',text: data.et});
+    client.pushMessage('C4671018fe7f2399f85112949a4db5057', {type:'text',text: data.et});
 	}  
 }
 
 wialon.core.Session.getInstance().initSession("https://hst-api.wialon.com"); // init session
 // For more info about how to generate token check
 // http://sdk.wialon.com/playground/demo/app_auth_token
-wialon.core.Session.getInstance().loginToken("984d9fe52eae37eff6feb497a0fefc53C6D18967A117E57BE1BD259AA0B76F2AF0F653AE", "", // try to login
+wialon.core.Session.getInstance().loginToken("80ffb2c06ce418eac04e033e1ef5454c45181860F53BE1047CEC87276E23DF9476D0AA68", "", // try to login
 	function (code) { // login callback
 	    // if error code - print error message
 		if (code){ msg(wialon.core.Errors.getErrorText(code)); return; }
