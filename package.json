@@ -13,7 +13,8 @@
     "npm-git-install": "^0.3.0",
     "request": "^2.88.2",
     "wialon": "^2.0.2",
-    "wialonjs-api": "0.0.8"
+    "wialonjs-api": "0.0.8",
+    "xmlhttprequest": "^1.8.0"
   },
   "devDependencies": {},
   "scripts": {
