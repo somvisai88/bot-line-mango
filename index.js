@@ -96,8 +96,8 @@ function init() { // Execute after login succeed
 	);
 }
 let eventCount = 1;
-var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
-var xhr = new XMLHttpRequest();
+//var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
+//var xhr = new XMLHttpRequest();
 
 function showData(event) {
 	var data = event.getData(); // get data from event
@@ -109,7 +109,7 @@ function showData(event) {
         
 		//xhr.open("POST","https://api.telegram.org/bot1596286707:AAEczFpw7ou6kkn3XlVfZt3Oa5cc5d029UU/sendMessage?chat_id=-573736883&text="+ encodeURI(data.et), true);
 		//xhr.send();
-    client.pushMessage('Ca83e09bb6adda01520a67c1888f52780', {type:'text',text: encodeURI(data.et)});
+    client.pushMessage('Ca83e09bb6adda01520a67c1888f52780', {type:'text',text: data.et});
 	}  
 }
 
