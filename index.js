@@ -11,6 +11,9 @@ const config = {
   channelSecret: '4361e408dfc289fd414684b3269f5e9a',
 };
 
+const configWialon = {
+  AccessToken: '80ffb2c06ce418eac04e033e1ef5454c8FC7DF7CCC8CE1149D8114DFB73347EA9D00D4EE',
+};
 // create LINE SDK client
 const client = new line.Client(config);
 
@@ -76,8 +79,10 @@ function init() { // Execute after login succeed
 	var sess = wialon.core.Session.getInstance(); // get instance of current Session
 	// flags to specify what kind of data should be returned
 	var flags = wialon.item.Item.dataFlag.base | wialon.item.Resource.dataFlag.base | wialon.item.Item.dataFlag.messages | wialon.item.Resource.dataFlag.notifications;
+  //var flags = wialon.item.Resource.dataFlag.notifications;
   console.log("===== SESSION ======");
   console.log(sess.__token);
+  //console.log(sess.__currUser);
   sess.loadLibrary("resourceNotifications"); // load Notification Library 
     sess.updateDataFlags( // load items to current session
 	[{type: "type", data: "avl_unit", flags: flags, mode: 1}], // Items specification
@@ -93,12 +98,11 @@ function init() { // Execute after login succeed
           units[i].addListener("messageRegistered", showData); // register event when we will receive message
 			    console.log('unit', u.getName());
 			}
+      
 	    }
 	);
 }
 let eventCount = 1;
-//var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
-//var xhr = new XMLHttpRequest();
 
 function showData(event) {
 	var data = event.getData(); // get data from event
@@ -107,9 +111,7 @@ function showData(event) {
 		console.log(" " + data.et); // add row with data to info-table
 		console.log("Count " + eventCount); // get notification count
     eventCount = eventCount + 1;	
-        
-		//xhr.open("POST","https://api.telegram.org/bot1596286707:AAEczFpw7ou6kkn3XlVfZt3Oa5cc5d029UU/sendMessage?chat_id=-573736883&text="+ encodeURI(data.et), true);
-		//xhr.send();
+   
     client.pushMessage('C4671018fe7f2399f85112949a4db5057', {type:'text',text: data.et});
 	}  
 }
@@ -117,11 +119,11 @@ function showData(event) {
 wialon.core.Session.getInstance().initSession("https://hst-api.wialon.com"); // init session
 // For more info about how to generate token check
 // http://sdk.wialon.com/playground/demo/app_auth_token
-wialon.core.Session.getInstance().loginToken("80ffb2c06ce418eac04e033e1ef5454c28299CC58E8D3C5BB0A1549F3E56F20A23C2C575", "", // try to login
-	function (code) { // login callback80ffb2c06ce418eac04e033e1ef5454c935883F337519075267CD114C71BB51BE979AF08
-	    // if error code - print error message
+
+wialon.core.Session.getInstance().loginToken(configWialon.AccessToken, "", // try to login
+	function (code) { 
 		if (code){ msg(wialon.core.Errors.getErrorText(code)); return; }
-		msg("Logged successfully"); init(); // when login suceed then run init() function
+		msg("Logged successfully"); init();    
 });
 
 // listen on port
