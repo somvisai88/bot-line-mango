@@ -2,8 +2,10 @@
 
 const line = require('@line/bot-sdk');
 const express = require('express');
-
 const wialon = require('./wialon.node.js').wialon;
+const dotenv = require('dotenv');
+dotenv.config();
+
 
 // create LINE SDK config from env variables
 const config = {
@@ -11,9 +13,6 @@ const config = {
   channelSecret: '4361e408dfc289fd414684b3269f5e9a',
 };
 
-const configWialon = {
-  AccessToken: '80ffb2c06ce418eac04e033e1ef5454c8FC7DF7CCC8CE1149D8114DFB73347EA9D00D4EE',
-};
 // create LINE SDK client
 const client = new line.Client(config);
 
@@ -120,7 +119,7 @@ wialon.core.Session.getInstance().initSession("https://hst-api.wialon.com"); // 
 // For more info about how to generate token check
 // http://sdk.wialon.com/playground/demo/app_auth_token
 
-wialon.core.Session.getInstance().loginToken(configWialon.AccessToken, "", // try to login
+wialon.core.Session.getInstance().loginToken(process.env.WIALON_ACCESS-TOKEN, "", // try to login
 	function (code) { 
 		if (code){ msg(wialon.core.Errors.getErrorText(code)); return; }
 		msg("Logged successfully"); init();    
