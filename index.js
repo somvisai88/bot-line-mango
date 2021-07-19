@@ -6,6 +6,10 @@ const wialon = require('./wialon.node.js').wialon;
 const dotenv = require('dotenv');
 dotenv.config();
 
+module.exports = {
+  accesstoken: process.env.WIALON_ACCESSTOKEN,  
+};
+
 
 // create LINE SDK config from env variables
 const config = {
@@ -119,7 +123,8 @@ wialon.core.Session.getInstance().initSession("https://hst-api.wialon.com"); // 
 // For more info about how to generate token check
 // http://sdk.wialon.com/playground/demo/app_auth_token
 
-wialon.core.Session.getInstance().loginToken(process.env.WIALON_ACCESS-TOKEN, "", // try to login
+msg(this.accesstoken);
+wialon.core.Session.getInstance().loginToken(this.accesstoken, "", // try to login
 	function (code) { 
 		if (code){ msg(wialon.core.Errors.getErrorText(code)); return; }
 		msg("Logged successfully"); init();    
