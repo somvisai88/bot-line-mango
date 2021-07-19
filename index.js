@@ -117,8 +117,8 @@ function showData(event) {
 wialon.core.Session.getInstance().initSession("https://hst-api.wialon.com"); // init session
 // For more info about how to generate token check
 // http://sdk.wialon.com/playground/demo/app_auth_token
-wialon.core.Session.getInstance().loginToken("80ffb2c06ce418eac04e033e1ef5454c45181860F53BE1047CEC87276E23DF9476D0AA68", "", // try to login
-	function (code) { // login callback
+wialon.core.Session.getInstance().loginToken("80ffb2c06ce418eac04e033e1ef5454c28299CC58E8D3C5BB0A1549F3E56F20A23C2C575", "", // try to login
+	function (code) { // login callback80ffb2c06ce418eac04e033e1ef5454c935883F337519075267CD114C71BB51BE979AF08
 	    // if error code - print error message
 		if (code){ msg(wialon.core.Errors.getErrorText(code)); return; }
 		msg("Logged successfully"); init(); // when login suceed then run init() function
