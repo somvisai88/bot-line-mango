@@ -36,7 +36,7 @@ app.post('/callMe',  function(req, res) {
         .catch((err) => {
             // error handling
         });*/
-        client.pushMessage('C4671018fe7f2399f85112949a4db5057', {type:'text',text: '-'});
+        client.pushMessage('Cc63b5e76eb484ba40949683094cdf692', {type:'text',text: txtEvents.toString()});
         //client.pushMessage('C4671018fe7f2399f85112949a4db5057', {type:'text',text: message.toString()});
         //client.pushMessage('Cc63b5e76eb484ba40949683094cdf692', {type:'text',text: 'Hello Mr.Visai'});
        
@@ -48,8 +48,8 @@ app.post('/callback', line.middleware(config), (req, res) => {
     .then((result) => {
       res.json(result);
       //var message = req.param('message');
-      //console.log("Destination User ID: " + JSON.stringify(req.body.events));
-      client.pushMessage('C4671018fe7f2399f85112949a4db5057', {type:'text',text: '-'});
+      console.log("Destination User ID: " + JSON.stringify(req.body.events));
+      client.pushMessage('Cc63b5e76eb484ba40949683094cdf692', {type:'text',text: txtEvents.toString()});
     })
     .catch((err) => {
       console.error(err);
@@ -102,6 +102,7 @@ function init() { // Execute after login succeed
 	);
 }
 let eventCount = 1;
+let txtEvents = "";
 
 function showData(event) {
 	var data = event.getData(); // get data from event
@@ -110,8 +111,8 @@ function showData(event) {
 		console.log(" " + data.et); // add row with data to info-table
 		console.log("Count " + eventCount); // get notification count
     eventCount = eventCount + 1;	
-   
-    client.pushMessage('C4671018fe7f2399f85112949a4db5057', {type:'text',text: data.et});
+    txtEvents = data.et;
+    client.pushMessage('Cc63b5e76eb484ba40949683094cdf692', {type:'text',text: data.et});
 	}  
 }
 
