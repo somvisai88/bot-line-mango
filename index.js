@@ -166,7 +166,7 @@ function showData(event) {
         break;
 
         default:
-          client.pushMessage('Cc63b5e76eb484ba40949683094cdf692', {type:'text',text: 'There is an error which not found in the CP Cambodia Group Business ...'});
+          client.pushMessage('C4671018fe7f2399f85112949a4db5057', {type:'text',text: data.et});
       }
 
 	}  
