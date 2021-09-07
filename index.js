@@ -44,6 +44,7 @@ app.post('/callMe',  function(req, res) {
 
 
 let groupIDStr = "-";
+let clrGroupIDStr = "";
 
 app.post('/callback', line.middleware(config), (req, res) => {
   Promise
@@ -56,7 +57,10 @@ app.post('/callback', line.middleware(config), (req, res) => {
       console.log("Destination Group ID: " + JSON.stringify(req.body.events[0].source.groupId.toString()));
      
       //console.log('Cc63b5e76eb484ba40949683094cdf692');
-      client.pushMessage('Cc63b5e76eb484ba40949683094cdf692', {type:'text',text: 'This is auto line for CP Cambodia Group...'});
+      groupIDStr = JSON.stringify(req.body.events[0].source.groupId.toString());
+      clrGroupIDStr = groupIDStr.substring(1,groupIDStr.length -1);
+
+      client.pushMessage(clrGroupIDStr, {type:'text',text: 'This is auto line for CP Cambodia Group...'});
 
     })
     .catch((err) => {
