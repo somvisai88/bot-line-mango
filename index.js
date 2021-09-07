@@ -55,7 +55,7 @@ app.post('/callback', line.middleware(config), (req, res) => {
      
       console.log("Destination Group ID: " + JSON.stringify(req.body.events[0].source.groupId.toString()));
      
-      console.log('Cc63b5e76eb484ba40949683094cdf692');
+      //console.log('Cc63b5e76eb484ba40949683094cdf692');
       client.pushMessage('Cc63b5e76eb484ba40949683094cdf692', {type:'text',text: 'This is auto line for CP Cambodia Group...'});
 
     })
