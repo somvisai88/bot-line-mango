@@ -22,7 +22,7 @@ const app = express();
 
 // register a webhook handler with middleware
 // about the middleware, please refer to doc
-app.post('/callMe',  function(req, res) {
+app.post('/callU',  function(req, res) {
       //var message = req.param('message');
         //console.log("Destination User ID: " + JSON.stringify(req));
         //console.log("=======CHECK=======: " + req.body.events[0].source.groupId);
@@ -40,6 +40,21 @@ app.post('/callMe',  function(req, res) {
         //client.pushMessage('C4671018fe7f2399f85112949a4db5057', {type:'text',text: message.toString()});
         //client.pushMessage('Cc63b5e76eb484ba40949683094cdf692', {type:'text',text: 'Hello Mr.Visai'});
        
+});
+
+app.post('/callMe', line.middleware(config), (req, res) => {
+  Promise
+    .all(req.body.events.map(handleEvent))
+    .then((result) => {
+      res.json(result);
+      //var message = req.param('message');
+      //console.log("Destination User ID: " + JSON.stringify(req.body.events));      
+      client.pushMessage('Cc63b5e76eb484ba40949683094cdf692', {type:'text',text: txtEvents.toString()});
+    })
+    .catch((err) => {
+      console.error(err);
+      res.status(500).end();
+    });
 });
 
 app.post('/callback', line.middleware(config), (req, res) => {
