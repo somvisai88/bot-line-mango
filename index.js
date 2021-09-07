@@ -60,7 +60,7 @@ app.post('/callback', line.middleware(config), (req, res) => {
       groupIDStr = JSON.stringify(req.body.events[0].source.groupId.toString());
       clrGroupIDStr = groupIDStr.substring(1,groupIDStr.length -1);
 
-      client.pushMessage(clrGroupIDStr, {type:'text',text: 'This is auto line for CP Cambodia Group...'});
+      client.pushMessage(clrGroupIDStr, {type:'text',text: 'Welcome auto line for CP Cambodia Group...'});
 
     })
     .catch((err) => {
@@ -125,6 +125,50 @@ function showData(event) {
     eventCount = eventCount + 1;	
     txtEvents = data.et;
     //client.pushMessage('Cc63b5e76eb484ba40949683094cdf692', {type:'text',text: data.et});
+    let inStr = 0;
+    inStr = str.indexOf("-");
+    let reStr = str.substring(0,inStr);
+
+    console.log(reStr);
+    console.log(reStr.length);
+    console.log(reStr.trim());
+    console.log(reStr.trim().length);
+
+    let newStr = reStr.trim();
+
+      switch(newStr){
+        case "FOOD BUSINESS":
+          client.pushMessage('C24603ab0e23b880008d4b2fa27ab1d26', {type:'text',text: data.et});
+          break;
+
+        case "INTEGRATE BUSINESS":
+          client.pushMessage('C7fc3c66ed9333985590ee849d3dc0b1e', {type:'text',text: data.et});
+          break;
+
+        case "LABORATORY":
+          client.pushMessage('C8e0cb05264a2eb332d6b51757acd1ce1', {type:'text',text: data.et});
+          break;    
+
+        case "POULTRY BUSINESS":
+          client.pushMessage('C4935c827931390ba8ffcdf4db27fa823', {type:'text',text: data.et});
+          break;    
+          
+        case "SWINE BUSINESS":
+          client.pushMessage('C8727a84e12b815560858d7bcc1b5894d', {type:'text',text: data.et});
+          break;    
+
+        case "SWINE POULTRY SALE BUSINESS":
+        client.pushMessage('C2b6ab38fba8dffecc6b920221be2a5db', {type:'text',text: data.et});
+        break;
+
+        case "VET DRUG BUSINESS":
+        client.pushMessage('Cf27a66e92e86744d8e99121c3ce05299', {type:'text',text: data.et});
+        break;
+
+        default:
+          client.pushMessage('Cc63b5e76eb484ba40949683094cdf692', {type:'text',text: 'There is an error which not found in the CP Cambodia Group Business ...'});
+      }
+
 	}  
 }
 
