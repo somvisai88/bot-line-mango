@@ -48,7 +48,8 @@ app.post('/callMe', line.middleware(config), (req, res) => {
     .then((result) => {
       res.json(result);
       //var message = req.param('message');
-      //console.log("Destination User ID: " + JSON.stringify(req.body.events));      
+      //console.log("Destination User ID: " + JSON.stringify(req.body.events));   
+      console.log("==== CALL ME====");   
       client.pushMessage('Cc63b5e76eb484ba40949683094cdf692', {type:'text',text: txtEvents.toString()});
     })
     .catch((err) => {
