@@ -49,7 +49,7 @@ app.post('/callback', line.middleware(config), (req, res) => {
       res.json(result);
       //var message = req.param('message');
       //console.log("Destination User ID: " + JSON.stringify(req.body.events));
-      console.log("Destination Group ID: " + JSON.stringify(reg.body.events[0].source.groupId.toString()));
+      console.log("Destination Group ID: " + JSON.stringify(req.body.events[0].source.groupId.toString()));
       client.pushMessage('Cc63b5e76eb484ba40949683094cdf692', {type:'text',text: 'This is auto line for CP Cambodia Group...'});
     })
     .catch((err) => {
