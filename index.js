@@ -22,7 +22,7 @@ const app = express();
 
 // register a webhook handler with middleware
 // about the middleware, please refer to doc
-app.post('/callU',  function(req, res) {
+app.post('/callMe',  function(req, res) {
       //var message = req.param('message');
         //console.log("Destination User ID: " + JSON.stringify(req));
         //console.log("=======CHECK=======: " + req.body.events[0].source.groupId);
@@ -42,21 +42,6 @@ app.post('/callU',  function(req, res) {
        
 });
 
-app.post('/callMe', line.middleware(config), (req, res) => {
-  Promise
-    .all(req.body.events.map(handleEvent))
-    .then((result) => {
-      res.json(result);
-      //var message = req.param('message');
-      //console.log("Destination User ID: " + JSON.stringify(req.body.events));   
-      console.log("==== CALL ME====");   
-      client.pushMessage('Cc63b5e76eb484ba40949683094cdf692', {type:'text',text: txtEvents.toString()});
-    })
-    .catch((err) => {
-      console.error(err);
-      res.status(500).end();
-    });
-});
 
 app.post('/callback', line.middleware(config), (req, res) => {
   Promise
@@ -119,7 +104,7 @@ function init() { // Execute after login succeed
 	);
 }
 let eventCount = 1;
-let txtEvents = "";
+let txtEvents = " AutoBot Line has started...";
 
 function showData(event) {
 	var data = event.getData(); // get data from event
