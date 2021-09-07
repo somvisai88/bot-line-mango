@@ -112,7 +112,7 @@ function showData(event) {
 		console.log("Count " + eventCount); // get notification count
     eventCount = eventCount + 1;	
     txtEvents = data.et;
-    client.pushMessage('Cc63b5e76eb484ba40949683094cdf692', {type:'text',text: data.et});
+    //client.pushMessage('Cc63b5e76eb484ba40949683094cdf692', {type:'text',text: data.et});
 	}  
 }
 
