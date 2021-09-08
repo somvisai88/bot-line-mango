@@ -126,8 +126,8 @@ function showData(event) {
     txtEvents = data.et;
     //client.pushMessage('Cc63b5e76eb484ba40949683094cdf692', {type:'text',text: data.et});
     let inStr = 0;
-    inStr = str.indexOf("-");
-    let reStr = str.substring(0,inStr);
+    inStr = txtEvents.indexOf("-");
+    let reStr = txtEvents.substring(0,inStr);
 
     console.log(reStr);
     console.log(reStr.length);
