@@ -139,30 +139,37 @@ function showData(event) {
       switch(newStr){
         case "FOOD BUSINESS":
           client.pushMessage('C24603ab0e23b880008d4b2fa27ab1d26', {type:'text',text: data.et});
+          client.pushMessage('C4671018fe7f2399f85112949a4db5057', {type:'text',text: data.et});
           break;
 
         case "INTEGRATE BUSINESS":
           client.pushMessage('C7fc3c66ed9333985590ee849d3dc0b1e', {type:'text',text: data.et});
+          client.pushMessage('C4671018fe7f2399f85112949a4db5057', {type:'text',text: data.et});
           break;
 
         case "LABORATORY":
           client.pushMessage('C8e0cb05264a2eb332d6b51757acd1ce1', {type:'text',text: data.et});
+          client.pushMessage('C4671018fe7f2399f85112949a4db5057', {type:'text',text: data.et});
           break;    
 
         case "POULTRY BUSINESS":
           client.pushMessage('C4935c827931390ba8ffcdf4db27fa823', {type:'text',text: data.et});
+          client.pushMessage('C4671018fe7f2399f85112949a4db5057', {type:'text',text: data.et});
           break;    
           
         case "SWINE BUSINESS":
           client.pushMessage('C8727a84e12b815560858d7bcc1b5894d', {type:'text',text: data.et});
+          client.pushMessage('C4671018fe7f2399f85112949a4db5057', {type:'text',text: data.et});
           break;    
 
         case "SWINE POULTRY SALE BUSINESS":
         client.pushMessage('C2b6ab38fba8dffecc6b920221be2a5db', {type:'text',text: data.et});
+        client.pushMessage('C4671018fe7f2399f85112949a4db5057', {type:'text',text: data.et});
         break;
 
         case "VET DRUG BUSINESS":
         client.pushMessage('Cf27a66e92e86744d8e99121c3ce05299', {type:'text',text: data.et});
+        client.pushMessage('C4671018fe7f2399f85112949a4db5057', {type:'text',text: data.et});
         break;
 
         default:
