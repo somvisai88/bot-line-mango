@@ -172,6 +172,14 @@ function showData(event) {
         client.pushMessage('C4671018fe7f2399f85112949a4db5057', {type:'text',text: data.et});
         break;
 
+        case "AQUA FEED SALE BUSINESS":
+        client.pushMessage('Cfd2a9f9132b2b49847d68d7c5e0d3c87', {type:'text',text: data.et});
+        client.pushMessage('C4671018fe7f2399f85112949a4db5057', {type:'text',text: data.et});
+
+        case "FEED SALE BUSINESS":
+        client.pushMessage('Cbdd9e90f760b0dc6df84f99715075574', {type:'text',text: data.et});
+        client.pushMessage('C4671018fe7f2399f85112949a4db5057', {type:'text',text: data.et});
+
         default:
           client.pushMessage('C4671018fe7f2399f85112949a4db5057', {type:'text',text: data.et});
       }
